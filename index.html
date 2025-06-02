@@ -62,6 +62,13 @@
     .monthly { font-size: 26px; color: #cccccc; }
     .annual { font-size: 30px; color: #00baff; }
     .logo-box {
+      display: inline-block;
+      padding: 10px;
+      background: none;
+      min-width: auto;
+      min-height: auto;
+      background-color: #111;
+      border-radius: 12px;
       background: #111;
       border-radius: 20px;
       padding: 40px;
@@ -105,7 +112,7 @@
       <span class="result-line monthly">📅 Monthly: <span id="monthlyDisplay">$2,251.6</span></span>
       <span class="result-line annual">📈 Annual: <span id="annualDisplay">$27,040</span></span>
     </div>
-    <div class="logo-box">
+    <div class="logo-box" style="display:inline-block; padding:10px; background-color:#111; border-radius:12px;">
       <img src="logo-dark.png" alt="Cloud Equation Logo" class="logo-image"/>
     </div>
   </div>
@@ -126,9 +133,9 @@
       const cost = c * o;
       const net = total - cost;
 
-      document.getElementById('timeSaving').textContent = `$${t.toLocaleString('en-US')}`;
-      document.getElementById('orderRecovery').textContent = `$${r.toLocaleString('en-US')}`;
-      document.getElementById('totalCost').textContent = `$${cost.toLocaleString('en-US')}`;
+      document.getElementById('timeSaving').textContent = `$${tMath.round($&).toLocaleString('en-US')}`;
+      document.getElementById('orderRecovery').textContent = `$${rMath.round($&).toLocaleString('en-US')}`;
+      document.getElementById('totalCost').textContent = `$${costMath.round($&).toLocaleString('en-US')}`;
       document.getElementById('netBenefitDisplay').textContent = `$${net.Math.round($&).toLocaleString('en-US')}`;
       document.getElementById('monthlyDisplay').textContent = `$${Math.round(net * 4.33).Math.round($&).toLocaleString('en-US')}`;
       document.getElementById('annualDisplay').textContent = `$${Math.round(net * 52).Math.round($&).toLocaleString('en-US')}`;
