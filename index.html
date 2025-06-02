@@ -129,9 +129,9 @@
       document.getElementById('timeSaving').textContent = `$${t.toLocaleString('en-US')}`;
       document.getElementById('orderRecovery').textContent = `$${r.toLocaleString('en-US')}`;
       document.getElementById('totalCost').textContent = `$${cost.toLocaleString('en-US')}`;
-      document.getElementById('netBenefitDisplay').textContent = `$${net.toLocaleString('en-US')}`;
-      document.getElementById('monthlyDisplay').textContent = `$${(net * 4.33).toLocaleString('en-US')}`;
-      document.getElementById('annualDisplay').textContent = `$${(net * 52).toLocaleString('en-US')}`;
+      document.getElementById('netBenefitDisplay').textContent = `$${net.Math.round($&).toLocaleString('en-US')}`;
+      document.getElementById('monthlyDisplay').textContent = `$${Math.round(net * 4.33).Math.round($&).toLocaleString('en-US')}`;
+      document.getElementById('annualDisplay').textContent = `$${Math.round(net * 52).Math.round($&).toLocaleString('en-US')}`;
     }
 
     ['hours','wage','missedOrders','orderValue','margin','outlets','aiCost'].forEach(id =>
