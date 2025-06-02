@@ -1,24 +1,70 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Voice AI ROI Calculator</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; padding: 20px; }
-    h2 { text-align: center; color: #111; }
-    table { width: 100%; max-width: 750px; margin: 0 auto; border-collapse: collapse; background: #fff; border: 1px solid #ddd; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
-    th { background: #f3f3f3; font-weight: bold; color: #333; }
-    td input { width: 70px; }
-    .result { text-align: center; margin-top: 40px; }
-    .result-box {
-      background: #111; color: #00baff;
-      padding: 30px 40px; border-radius: 16px;
-      font-size: 22px; font-weight: bold;
-      display: inline-block; position: relative;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
     }
+    h2 {
+      text-align: center;
+      color: #111;
+    }
+    table {
+      width: 100%;
+      max-width: 750px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background-color: #f3f3f3;
+      font-weight: bold;
+      color: #333;
+    }
+    td input {
+      width: 70px;
+    }
+    .result {
+      text-align: center;
+      margin-top: 40px;
+      position: relative;
+    }
+    .result-box {
+      background: #111;
+      color: white;
+      padding: 40px 50px;
+      border-radius: 20px;
+      display: inline-block;
+      position: relative;
+      text-align: left;
+    }
+    .result-line {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0;
+    }
+    .weekly { font-size: 22px; color: white; }
+    .monthly { font-size: 26px; color: #cccccc; }
+    .annual { font-size: 30px; color: #00baff; }
     .logo {
-      position: absolute; bottom: -35px; right: -35px;
-      width: 90px; opacity: 0.9;
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 150px;
+      opacity: 0.95;
     }
   </style>
 </head>
@@ -26,25 +72,30 @@
   <h2>Voice AI ROI for Restaurants</h2>
   <table>
     <thead>
-      <tr><th>Input</th><th>Value</th><th>Savings / Week</th><th>Cost</th></tr>
+      <tr>
+        <th>Input</th>
+        <th>Value</th>
+        <th>Savings / Week</th>
+        <th>Cost</th>
+      </tr>
     </thead>
     <tbody>
       <tr><td>Hours saved per day</td><td><input id="hours" type="number" value="2"></td><td id="timeSaving" style="color: green; font-weight: bold;">$300</td><td>–</td></tr>
       <tr><td>Hourly wage</td><td><input id="wage" type="number" value="25"></td><td>–</td><td>–</td></tr>
-      <tr><td>Missed orders per day</td><td><input id="missedOrders" type="number" value="2"></td><td id="orderRecovery" style="color: green; font-weight: bold;">$490</td><td>–</td></tr>
+      <tr><td>Missed orders per day</td><td><input id="missedOrders" type="number" value="2"></td><td id="orderRecovery" style="color: green; font-weight: bold;">$420</td><td>–</td></tr>
       <tr><td>Average order value</td><td><input id="orderValue" type="number" value="70"></td><td>–</td><td>–</td></tr>
       <tr><td>Gross profit margin</td><td><input id="margin" type="number" value="50">%</td><td>–</td><td>–</td></tr>
       <tr><td>Number of outlets</td><td><input id="outlets" type="number" value="1"></td><td>–</td><td>–</td></tr>
-      <tr><td>Voice AI cost per outlet</td><td><input id="aiCost" type="number" value="200"></td><td>–</td><td style="color: #d33; font-weight: bold;">$200</td></tr>
+      <tr><td>Voice AI cost per outlet</td><td><input id="aiCost" type="number" value="200"></td><td>–</td><td id="totalCost" style="color: #d33; font-weight: bold;">$200</td></tr>
     </tbody>
   </table>
 
   <div class="result">
     <div class="result-box">
-      ✅ Weekly Net Benefit: <span id="netBenefitDisplay">$590</span><br/>
-      📅 Monthly: <span id="monthlyDisplay">$2560</span><br/>
-      📈 Annual: <span id="annualDisplay">$30720</span>
-      <img src="Logo-Transparent1best.png" alt="Cloud Equation Logo" class="logo" />
+      <span class="result-line weekly">✅ Weekly Net Benefit: <span id="netBenefitDisplay">$590</span></span>
+      <span class="result-line monthly">📅 Monthly: <span id="monthlyDisplay">$2560</span></span>
+      <span class="result-line annual">📈 Annual: <span id="annualDisplay">$30720</span></span>
+      <img src="logo-dark.png" class="logo" alt="Cloud Equation Logo"/>
     </div>
   </div>
 
@@ -66,10 +117,12 @@
 
       document.getElementById('timeSaving').textContent = `$${t.toFixed(0)}`;
       document.getElementById('orderRecovery').textContent = `$${r.toFixed(0)}`;
+      document.getElementById('totalCost').textContent = `$${cost.toFixed(0)}`;
       document.getElementById('netBenefitDisplay').textContent = `$${net.toFixed(0)}`;
       document.getElementById('monthlyDisplay').textContent = `$${(net * 4.33).toFixed(0)}`;
       document.getElementById('annualDisplay').textContent = `$${(net * 52).toFixed(0)}`;
     }
+
     ['hours','wage','missedOrders','orderValue','margin','outlets','aiCost'].forEach(id =>
       document.getElementById(id).addEventListener('input', recalculate));
     recalculate();
