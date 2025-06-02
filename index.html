@@ -115,12 +115,12 @@
       const cost = c * o;
       const net = total - cost;
 
-      document.getElementById('timeSaving').textContent = `$${t.toFixed(0)}`;
-      document.getElementById('orderRecovery').textContent = `$${r.toFixed(0)}`;
-      document.getElementById('totalCost').textContent = `$${cost.toFixed(0)}`;
-      document.getElementById('netBenefitDisplay').textContent = `$${net.toFixed(0)}`;
-      document.getElementById('monthlyDisplay').textContent = `$${(net * 4.33).toFixed(0)}`;
-      document.getElementById('annualDisplay').textContent = `$${(net * 52).toFixed(0)}`;
+      document.getElementById('timeSaving').textContent = `$${t.toLocaleString('en-US')}`;
+      document.getElementById('orderRecovery').textContent = `$${r.toLocaleString('en-US')}`;
+      document.getElementById('totalCost').textContent = `$${cost.toLocaleString('en-US')}`;
+      document.getElementById('netBenefitDisplay').textContent = `$${net.toLocaleString('en-US')}`;
+      document.getElementById('monthlyDisplay').textContent = `$${(net * 4.33).toLocaleString('en-US')}`;
+      document.getElementById('annualDisplay').textContent = `$${(net * 52).toLocaleString('en-US')}`;
     }
 
     ['hours','wage','missedOrders','orderValue','margin','outlets','aiCost'].forEach(id =>
