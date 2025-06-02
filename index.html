@@ -61,8 +61,19 @@
     .weekly { font-size: 22px; color: white; }
     .monthly { font-size: 26px; color: #cccccc; }
     .annual { font-size: 30px; color: #00baff; }
+    .logo-box {
+      background: #111;
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 300px;
+      min-height: 160px;
+    }
     .logo-image {
-      max-height: 160px;
+      max-width: 160px;
+      height: auto;
     }
   </style>
 </head>
@@ -91,10 +102,12 @@
   <div class="result-container">
     <div class="result-box">
       <span class="result-line weekly">✅ Weekly Net Benefit: <span id="netBenefitDisplay">$520</span></span>
-      <span class="result-line monthly">📅 Monthly: <span id="monthlyDisplay">$2,251</span></span>
+      <span class="result-line monthly">📅 Monthly: <span id="monthlyDisplay">$2,251.6</span></span>
       <span class="result-line annual">📈 Annual: <span id="annualDisplay">$27,040</span></span>
     </div>
-    <img src="logo-dark.png" alt="Cloud Equation Logo" class="logo-image"/>
+    <div class="logo-box">
+      <img src="logo-dark.png" alt="Cloud Equation Logo" class="logo-image"/>
+    </div>
   </div>
 
   <script>
