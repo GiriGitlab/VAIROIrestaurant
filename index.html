@@ -37,19 +37,21 @@
     td input {
       width: 70px;
     }
-    .result {
-      text-align: center;
+    .result-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin-top: 40px;
-      position: relative;
+      gap: 40px;
+      flex-wrap: wrap;
     }
     .result-box {
       background: #111;
       color: white;
-      padding: 40px 50px;
+      padding: 50px;
       border-radius: 20px;
-      display: inline-block;
-      position: relative;
       text-align: left;
+      min-width: 300px;
     }
     .result-line {
       font-weight: bold;
@@ -59,12 +61,8 @@
     .weekly { font-size: 22px; color: white; }
     .monthly { font-size: 26px; color: #cccccc; }
     .annual { font-size: 30px; color: #00baff; }
-    .logo {
-      position: absolute;
-      bottom: -50px;
-      right: -50px;
-      width: 150px;
-      opacity: 0.95;
+    .logo-image {
+      max-height: 160px;
     }
   </style>
 </head>
@@ -90,13 +88,13 @@
     </tbody>
   </table>
 
-  <div class="result">
+  <div class="result-container">
     <div class="result-box">
-      <span class="result-line weekly">✅ Weekly Net Benefit: <span id="netBenefitDisplay">$590</span></span>
-      <span class="result-line monthly">📅 Monthly: <span id="monthlyDisplay">$2560</span></span>
-      <span class="result-line annual">📈 Annual: <span id="annualDisplay">$30720</span></span>
-      <img src="logo-dark.png" class="logo" alt="Cloud Equation Logo"/>
+      <span class="result-line weekly">✅ Weekly Net Benefit: <span id="netBenefitDisplay">$520</span></span>
+      <span class="result-line monthly">📅 Monthly: <span id="monthlyDisplay">$2,251</span></span>
+      <span class="result-line annual">📈 Annual: <span id="annualDisplay">$27,040</span></span>
     </div>
+    <img src="logo-dark.png" alt="Cloud Equation Logo" class="logo-image"/>
   </div>
 
   <script>
