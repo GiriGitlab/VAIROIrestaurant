@@ -1,55 +1,24 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Voice AI ROI Calculator</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      padding: 20px;
-    }
-    h2 {
-      text-align: center;
-      color: #222;
-    }
-    table {
-      width: 100%;
-      max-width: 750px;
-      margin: 20px auto;
-      border-collapse: collapse;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding: 12px 15px;
-      text-align: left;
-      border-bottom: 1px solid #eee;
-    }
-    th {
-      background-color: #f3f3f3;
-      font-weight: bold;
-      color: #333;
-    }
-    td input {
-      width: 70px;
-    }
-    .result {
-      text-align: center;
-      margin-top: 40px;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; padding: 20px; }
+    h2 { text-align: center; color: #111; }
+    table { width: 100%; max-width: 750px; margin: 0 auto; border-collapse: collapse; background: #fff; border: 1px solid #ddd; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
+    th { background: #f3f3f3; font-weight: bold; color: #333; }
+    td input { width: 70px; }
+    .result { text-align: center; margin-top: 40px; }
     .result-box {
-      display: inline-block;
-      background-color: #e7f8e7;
-      border: 3px solid #5cb85c;
-      border-radius: 100px;
-      padding: 25px 40px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #2e7d32;
+      background: #111; color: #00baff;
+      padding: 30px 40px; border-radius: 16px;
+      font-size: 22px; font-weight: bold;
+      display: inline-block; position: relative;
+    }
+    .logo {
+      position: absolute; bottom: -35px; right: -35px;
+      width: 90px; opacity: 0.9;
     }
   </style>
 </head>
@@ -57,81 +26,52 @@
   <h2>Voice AI ROI for Restaurants</h2>
   <table>
     <thead>
-      <tr>
-        <th>Input</th>
-        <th>Value</th>
-        <th>Savings / Week</th>
-        <th>Cost</th>
-      </tr>
+      <tr><th>Input</th><th>Value</th><th>Savings / Week</th><th>Cost</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Hours saved per day</td>
-        <td><input id="hours" type="number" value="2"></td>
-        <td id="timeSaving" style="color: green; font-weight: bold;">$300</td>
-        <td>–</td>
-      </tr>
-      <tr>
-        <td>Hourly wage</td>
-        <td><input id="wage" type="number" value="25"></td>
-        <td>–</td>
-        <td>–</td>
-      </tr>
-      <tr>
-        <td>Missed orders per day</td>
-        <td><input id="missedOrders" type="number" value="2"></td>
-        <td id="orderRecovery" style="color: green; font-weight: bold;">$490</td>
-        <td>–</td>
-      </tr>
-      <tr>
-        <td>Average order value</td>
-        <td><input id="orderValue" type="number" value="70"></td>
-        <td>–</td>
-        <td>–</td>
-      </tr>
-      <tr>
-        <td>Gross profit margin</td>
-        <td><input id="margin" type="number" value="50">%</td>
-        <td>–</td>
-        <td>–</td>
-      </tr>
-      <tr>
-        <td>Voice AI cost</td>
-        <td><input id="aiCost" type="number" value="200"></td>
-        <td>–</td>
-        <td style="color: #d33; font-weight: bold;">$200</td>
-      </tr>
+      <tr><td>Hours saved per day</td><td><input id="hours" type="number" value="2"></td><td id="timeSaving" style="color: green; font-weight: bold;">$300</td><td>–</td></tr>
+      <tr><td>Hourly wage</td><td><input id="wage" type="number" value="25"></td><td>–</td><td>–</td></tr>
+      <tr><td>Missed orders per day</td><td><input id="missedOrders" type="number" value="2"></td><td id="orderRecovery" style="color: green; font-weight: bold;">$490</td><td>–</td></tr>
+      <tr><td>Average order value</td><td><input id="orderValue" type="number" value="70"></td><td>–</td><td>–</td></tr>
+      <tr><td>Gross profit margin</td><td><input id="margin" type="number" value="50">%</td><td>–</td><td>–</td></tr>
+      <tr><td>Number of outlets</td><td><input id="outlets" type="number" value="1"></td><td>–</td><td>–</td></tr>
+      <tr><td>Voice AI cost per outlet</td><td><input id="aiCost" type="number" value="200"></td><td>–</td><td style="color: #d33; font-weight: bold;">$200</td></tr>
     </tbody>
   </table>
+
   <div class="result">
     <div class="result-box">
-      ✅ Net Weekly Benefit: <span id="netBenefitDisplay">$590</span>
+      ✅ Weekly Net Benefit: <span id="netBenefitDisplay">$590</span><br/>
+      📅 Monthly: <span id="monthlyDisplay">$2560</span><br/>
+      📈 Annual: <span id="annualDisplay">$30720</span>
+      <img src="Logo-Transparent1best.png" alt="Cloud Equation Logo" class="logo" />
     </div>
   </div>
 
   <script>
     function recalculate() {
-      const hours = parseFloat(document.getElementById('hours').value);
-      const wage = parseFloat(document.getElementById('wage').value);
-      const missed = parseFloat(document.getElementById('missedOrders').value);
-      const value = parseFloat(document.getElementById('orderValue').value);
-      const margin = parseFloat(document.getElementById('margin').value) / 100;
-      const aiCost = parseFloat(document.getElementById('aiCost').value);
+      const h = +document.getElementById('hours').value;
+      const w = +document.getElementById('wage').value;
+      const m = +document.getElementById('missedOrders').value;
+      const v = +document.getElementById('orderValue').value;
+      const p = +document.getElementById('margin').value / 100;
+      const o = +document.getElementById('outlets').value;
+      const c = +document.getElementById('aiCost').value;
 
-      const timeSaving = hours * wage * 6;
-      const orderRecovery = missed * value * margin * 6;
-      const totalSavings = timeSaving + orderRecovery;
-      const net = totalSavings - aiCost;
+      const t = h * w * 6;
+      const r = m * v * p * 6;
+      const total = (t + r) * o;
+      const cost = c * o;
+      const net = total - cost;
 
-      document.getElementById('timeSaving').textContent = `$${timeSaving.toFixed(0)}`;
-      document.getElementById('orderRecovery').textContent = `$${orderRecovery.toFixed(0)}`;
+      document.getElementById('timeSaving').textContent = `$${t.toFixed(0)}`;
+      document.getElementById('orderRecovery').textContent = `$${r.toFixed(0)}`;
       document.getElementById('netBenefitDisplay').textContent = `$${net.toFixed(0)}`;
+      document.getElementById('monthlyDisplay').textContent = `$${(net * 4.33).toFixed(0)}`;
+      document.getElementById('annualDisplay').textContent = `$${(net * 52).toFixed(0)}`;
     }
-
-    ['hours', 'wage', 'missedOrders', 'orderValue', 'margin', 'aiCost'].forEach(id => {
-      document.getElementById(id).addEventListener('input', recalculate);
-    });
-
+    ['hours','wage','missedOrders','orderValue','margin','outlets','aiCost'].forEach(id =>
+      document.getElementById(id).addEventListener('input', recalculate));
     recalculate();
   </script>
 </body>
